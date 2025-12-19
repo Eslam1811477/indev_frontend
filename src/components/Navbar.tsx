@@ -1,7 +1,10 @@
 import styled from "styled-components";
+import { logout } from "../auth/func";
+
+
 
 const Navbar = () => {
-  const isAuthenticated = true; // مؤقتًا
+  const isAuthenticated = true;
 
   return (
     <Nav>
@@ -9,7 +12,7 @@ const Navbar = () => {
 
       <Actions>
         {isAuthenticated ? (
-          <button>Logout</button>
+          <button onClick={()=>{logout()}}>Logout</button>
         ) : (
           <button>Login</button>
         )}

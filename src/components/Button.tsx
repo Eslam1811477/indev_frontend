@@ -18,7 +18,7 @@ export default Button;
 const StyledButton = styled.button`
   width: 100%;
   padding: 10px;
-  background: #4f46e5;
+  background: #3d3d3d;
   color: white;
   border: none;
   border-radius: 6px;
@@ -32,6 +32,6 @@ const StyledButton = styled.button`
   }
 
   &:hover:not(:disabled) {
-    background: #4338ca;
+    background: #1b1b1b;
   }
 `;

@@ -2,14 +2,26 @@ import { useState } from "react";
 import styled from "styled-components";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
+import { useLogin } from "../../auth/func";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { mutate: login, isPending, error } = useLogin();
+
+
+  const handleSubmit = () => {
+    login({
+      email: "test@test.com",
+      password: "123456",
+    });
+  };
 
   return (
     <Container>
       <FormWrapper>
+          <WelcomeText>Welcome to indev</WelcomeText>
+
         <h2>Login</h2>
 
         <InputField
@@ -30,7 +42,7 @@ const Login = () => {
           placeholder="Enter your password"
         />
 
-        <Button type="button">Login</Button>
+        <Button type="button" onClick={()=>{handleSubmit()}}>{isPending?'Loading...':'LogIn'}</Button>
       </FormWrapper>
     </Container>
   );
@@ -60,3 +72,12 @@ const FormWrapper = styled.div`
     color: #111827;
   }
 `;
+
+const WelcomeText = styled.p`
+  text-align: center;
+  color: #474747;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+`;
+

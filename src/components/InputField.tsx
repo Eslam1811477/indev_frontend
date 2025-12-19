@@ -36,8 +36,8 @@ const Wrapper = styled.div`
 
     &:focus {
       outline: none;
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+      border-color: #7c7c7c;
+      box-shadow: 0 0 0 2px rgba(83, 83, 83, 0.2);
     }
   }
 `;
