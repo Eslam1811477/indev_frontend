@@ -3,19 +3,22 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Home from "../pages/dashboard/Home";
 import Users from "../pages/dashboard/Users";
 import Login from "../pages/auth/Login";
+import { isAuthenticated } from "../auth/func";
 
 const AppRouter = () => {
-  const isAuthenticated = false; // مؤقتًا – بعدين نربطه بالـ auth
+  const ISAuthenticated = isAuthenticated()
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={
+          !ISAuthenticated ? <Login /> : <Navigate to="/" />
+        } />
 
         <Route
           path="/"
           element={
-            isAuthenticated ? <DashboardLayout /> : <Navigate to="/login" />
+            ISAuthenticated ? <DashboardLayout /> : <Navigate to="/login" />
           }
         >
           <Route index element={<Home />} />

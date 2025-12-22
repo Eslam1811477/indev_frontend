@@ -14,10 +14,12 @@
     "@tanstack/react-query": "^5.90.12",
     "axios": "^1.13.2",
     "axios-hooks": "^5.1.1",
+    "dotenv": "^17.2.3",
     "react": "^19.2.0",
     "react-auth-kit": "^4.0.2-alpha.11",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.11.0",
+    "react-toastify": "^11.0.5",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {

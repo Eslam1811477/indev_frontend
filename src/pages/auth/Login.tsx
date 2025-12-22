@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import { useLogin } from "../../auth/func";
+import { Bounce, toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,15 +13,30 @@ const Login = () => {
 
   const handleSubmit = () => {
     login({
-      email: "test@test.com",
-      password: "123456",
+      email: email,
+      password: password,
     });
   };
+
+  useEffect(() => {
+    toast.error(error?.message, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+  }, [error])
+
 
   return (
     <Container>
       <FormWrapper>
-          <WelcomeText>Welcome to indev</WelcomeText>
+        <WelcomeText>Welcome to indev</WelcomeText>
 
         <h2>Login</h2>
 
@@ -42,7 +58,7 @@ const Login = () => {
           placeholder="Enter your password"
         />
 
-        <Button type="button" onClick={()=>{handleSubmit()}}>{isPending?'Loading...':'LogIn'}</Button>
+        <Button type="button" onClick={() => { handleSubmit() }}>{isPending ? 'Loading...' : 'LogIn'}</Button>
       </FormWrapper>
     </Container>
   );

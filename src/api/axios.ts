@@ -2,17 +2,18 @@ import axios from "axios";
 import { TOKEN_KEY } from "../auth/keys";
 
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_INDEV_API_URL ,
+  baseURL: "/",
+  withCredentials: false, 
 });
 
 axiosInstance.interceptors.request.use((config) => {
-    const token = localStorage.getItem(TOKEN_KEY);
+  const token = localStorage.getItem(TOKEN_KEY);
 
-    if (token && config.headers) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
+  if (token && config.headers) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
 
-    return config;
+  return config;
 });
 
 export default axiosInstance;
