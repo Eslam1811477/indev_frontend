@@ -2,8 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import { store } from "./store";
+
 
 /* ================= Global Styles ================= */
 const GlobalStyles = createGlobalStyle`
@@ -27,17 +29,14 @@ const GlobalStyles = createGlobalStyle`
     font-family: inherit;
   }
 `;
-const queryClient = new QueryClient();
 
 /* ================= Render App ================= */
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-
-    <GlobalStyles />
-    <ToastContainer/>
-    <App />
-    
-    </QueryClientProvider>
+    <Provider store={store}>
+      <GlobalStyles />
+      <ToastContainer />
+      <App />
+    </Provider>
   </React.StrictMode>
 );

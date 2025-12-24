@@ -6,6 +6,7 @@ const Sidebar = () => {
     <Wrapper>
       <NavItem to="/">Dashboard</NavItem>
       <NavItem to="/users">Users</NavItem>
+      <NavItem to="/templates">Templates</NavItem>
     </Wrapper>
   );
 };

@@ -1,18 +1,20 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { logout } from "../auth/func";
+import { isAuthenticated } from "../store/auth/auth.selectors";
+import { logout } from "../store/auth/auth.slice";
 
 
 
 const Navbar = () => {
-  const isAuthenticated = true;
+  const isAuth = useSelector(isAuthenticated);
 
   return (
     <Nav>
       <Logo>index</Logo>
 
       <Actions>
-        {isAuthenticated ? (
-          <button onClick={()=>{logout()}}>Logout</button>
+        {isAuth ? (
+          <button onClick={() => { logout() }}>Logout</button>
         ) : (
           <button>Login</button>
         )}

@@ -1,8 +1,9 @@
 import axios from "axios";
-import { TOKEN_KEY } from "../auth/keys";
+import { TOKEN_KEY } from "../consts";
+
 
 const axiosInstance = axios.create({
-  baseURL: "/",
+  baseURL: import.meta.env.VITE_INDEV_API_URL,
   withCredentials: false, 
 });
 
