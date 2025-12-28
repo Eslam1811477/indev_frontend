@@ -1,20 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { isAuthenticated } from "../store/auth/auth.selectors";
 import { logout } from "../store/auth/auth.slice";
+import { AppDispatch } from "../store";
 
 
 
 const Navbar = () => {
   const isAuth = useSelector(isAuthenticated);
-
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <Nav>
       <Logo>index</Logo>
 
       <Actions>
         {isAuth ? (
-          <button onClick={() => { logout() }}>Logout</button>
+          <button onClick={() => { dispatch(logout()) }}>Logout</button>
         ) : (
           <button>Login</button>
         )}

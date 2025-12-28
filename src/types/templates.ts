@@ -4,6 +4,7 @@ export interface Template {
   content: string;
   plugins: string[];
   active: boolean;
+  image?: string;
   createdAt: string;
   updatedAt: string;
 }

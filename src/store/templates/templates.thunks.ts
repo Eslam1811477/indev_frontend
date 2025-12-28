@@ -6,7 +6,12 @@ import {
   updateTemplateApi,
   deleteTemplateApi,
   toggleTemplateApi,
+  uploadTemplateImageApi, // 👈 جديد
 } from "../../api/templates.api";
+
+/* =========================
+   Fetch
+========================= */
 
 export const fetchTemplates = createAsyncThunk(
   "templates/fetchAll",
@@ -17,6 +22,10 @@ export const fetchTemplate = createAsyncThunk(
   "templates/fetchOne",
   async (id: string) => await fetchTemplateApi(id)
 );
+
+/* =========================
+   Create / Update
+========================= */
 
 export const createTemplate = createAsyncThunk(
   "templates/create",
@@ -29,6 +38,10 @@ export const updateTemplate = createAsyncThunk(
     await updateTemplateApi(id, data)
 );
 
+/* =========================
+   Delete / Toggle
+========================= */
+
 export const deleteTemplate = createAsyncThunk(
   "templates/delete",
   async (id: string) => await deleteTemplateApi(id)
@@ -37,4 +50,17 @@ export const deleteTemplate = createAsyncThunk(
 export const toggleTemplate = createAsyncThunk(
   "templates/toggle",
   async (id: string) => await toggleTemplateApi(id)
+);
+
+/* =========================
+   Upload Template Image ✅
+========================= */
+
+export const uploadTemplateImage = createAsyncThunk(
+  "templates/uploadImage",
+  async (
+    { templateId, file }: { templateId: string; file: File }
+  ) => {
+    return await uploadTemplateImageApi(templateId, file);
+  }
 );

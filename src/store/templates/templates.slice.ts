@@ -7,6 +7,7 @@ import {
   updateTemplate,
   deleteTemplate,
   toggleTemplate,
+  uploadTemplateImage,
 } from "./templates.thunks";
 
 interface TemplatesState {
@@ -73,10 +74,25 @@ const templatesSlice = createSlice({
         if (index !== -1) state.list[index] = action.payload;
       })
 
+      
       // Delete
       .addCase(deleteTemplate.fulfilled, (state, action) => {
         state.list = state.list.filter((t) => t._id !== action.payload);
-      });
+      })
+      .addCase(uploadTemplateImage.fulfilled, (state, action) => {
+        const index = state.list.findIndex(
+          (t) => t._id === action.payload._id
+        );
+
+        if (index !== -1) {
+          state.list[index] = action.payload;
+        }
+
+        if (state.current?._id === action.payload._id) {
+          state.current = action.payload;
+        }
+      })
+      
   },
 });
 
